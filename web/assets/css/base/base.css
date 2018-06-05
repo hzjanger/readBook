@@ -1,0 +1,35 @@
+.search{
+    width: 40%;
+    position: relative;
+}
+.search-form{
+    position: absolute;
+    top: 50%;
+}
+
+.form-control-overrite{
+    display: inline-block;
+    width: 75%;
+    margin: .5rem .2rem;
+}
+.search-button{
+    width: 12%;
+    margin: .5rem .2rem;
+}
+.nav-overrite{
+    padding: .5rem 1rem;
+}
+.nav .nav-link{
+    color: #000;
+}
+.nav .nav-link:hover{
+    color: #007bff;
+}
+.nav .nav-link{
+    padding: 0.5rem 0.8rem;
+}
+.nav .nav-line{
+    color: #efefef;
+    display: block;
+    padding: 0.5rem 0rem;
+}

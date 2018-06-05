@@ -1,0 +1,32 @@
+.book-name {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+}
+
+.book-information .col-7 p {
+    margin-bottom: .3rem;
+    font-size: .9rem;
+}
+
+.author {
+    margin-left: .5rem;
+}
+
+.introduction {
+    color: #079989;
+    margin-top: 2rem;
+}
+
+.introduction-container {
+    padding-left: 3rem;
+}
+
+.introduction-container p{
+    margin-bottom: .2rem;
+}
+
+.review-value {
+    padding-top: 1rem;
+    border-bottom: 1px solid #DDDDDD;
+}
