@@ -1,5 +1,8 @@
 package entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Book {
     private String ISBN;    //图书的唯一标识
     private String putlish_time;    //出版时间
@@ -167,7 +170,14 @@ public class Book {
                 '}';
     }
 
-    public Book getBook(Book book) {
-        return book;
+
+    public List<String> getList(String value) {
+        List<String> list = new ArrayList<String>();
+        String[] split = value.split("\n");
+        for (int i = 0; i < split.length; i++) {
+            list.add(split[i]);
+        }
+
+        return list;
     }
 }

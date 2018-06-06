@@ -9,6 +9,11 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme()+ "://" +request.getServerName()+ ":"+request.getServerPort()+path+ "/" ;
+%>
+<base href="<%=basePath%>">
 <html>
 <head>
     <title>Title</title>
@@ -19,6 +24,7 @@
 </head>
 <body>
 <%
+    System.out.println("search.jsp页面");
     List<Book> list = (List<Book>) request.getAttribute("search");
     Iterator iterator = list.iterator();
     Book book = new Book();
@@ -45,7 +51,23 @@
                 <%=book.getReview_grade()%>
                 <%--<span class="reviews">(3019人评价)</span>--%>
             </p>
-            <p class="author"><%=book.getAuthor()%>/ <%=book.getTranslators()%> / <%=book.getPubliseer()%> / <%=book.getPutlish_time()%>/ <%=book.getPrice()%></p>
+            <p class="author">
+                <%=book.getAuthor()%>
+                <% if (book.getTranslators() != null) {%>
+                    / <%=book.getTranslators()%>
+                <%}%>
+                <% if (book.getPubliseer() != null) {%>
+                    / <%=book.getPubliseer()%>
+                <%}%>
+                <% if (book.getPutlish_time() != null) {%>
+                    / <%=book.getPutlish_time()%>/
+                <%}%>
+                <% if (book.getPrice() != null) {%>
+                    <%=book.getPrice()%>
+                <%}%>
+            </p>
+
+
         </div>
     </div>
     <div class="row" style="margin-top: 1rem;margin-bottom: 0rem;">

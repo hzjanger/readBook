@@ -6,6 +6,12 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme()+ "://" +request.getServerName()+ ":"+request.getServerPort()+path+ "/" ;
+%>
+<base href="<%=basePath%>">
 <html>
 <head>
     <title>Title</title>
@@ -13,9 +19,17 @@
     <link rel="stylesheet" href="assets/css/index/index.css">
     <link rel="stylesheet" href="assets/css/base/base.css">
     <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+    <script src="assets/js/jquery-3.3.1.js"></script>
+    <script src="assets/bootstrap-4.0.0-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/bootstrap-4.0.0-dist/js/bootstrap.min.js"></script>
 </head>
 <body>
-<jsp:include page="assets/html/head.html"></jsp:include>
+<%--<%--%>
+    <%--String useNaame = (String) request.getAttribute("usename");--%>
+<%--//    System.out.println();--%>
+<%--%>--%>
+<%--<%=useNaame%>--%>
+<jsp:include page="head.jsp"></jsp:include>
 
 <div class="bg-white">
     <div class="container">

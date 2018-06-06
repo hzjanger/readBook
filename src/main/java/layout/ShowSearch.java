@@ -20,5 +20,9 @@ public class ShowSearch {
         this.list = list;
     }
 
+    public void addBook(Book book) {
+        list.add(book);
+    }
+
 
 }

@@ -55,6 +55,9 @@
                     <button class="btn btn-primary btn-block">注册</button>
                 </div>
             </form>
+            <div style="margin-top: 1rem;">
+                <a class="btn btn-primary btn-block" href="login.jsp">返回登录</a>
+            </div>
 
         </div>
     </div>

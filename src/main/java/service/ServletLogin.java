@@ -50,7 +50,9 @@ public class ServletLogin extends HttpServlet {
             }
             RequestDispatcher requestDispatcher = null;
             if (flag) {
+                request.setAttribute("usename", "1");
                 requestDispatcher = request.getRequestDispatcher("/index.jsp");
+
             } else {
                 requestDispatcher = request.getRequestDispatcher("/login.jsp");
             }

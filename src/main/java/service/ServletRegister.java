@@ -34,6 +34,7 @@ public class ServletRegister extends HttpServlet {
             preparedStatement.setString(1, user_name);
             preparedStatement.setString(2, pass);
             preparedStatement.setString(3, email);
+            preparedStatement.executeUpdate();
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/index.jsp");
             requestDispatcher.forward(request, response);
         } catch (SQLException e) {

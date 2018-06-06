@@ -1,4 +1,6 @@
-<%--
+<%@ page import="entity.Book" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Iterator" %><%--
   Created by IntelliJ IDEA.
   User: hzj
   Date: 18-6-2
@@ -6,6 +8,11 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme()+ "://" +request.getServerName()+ ":"+request.getServerPort()+path+ "/" ;
+%>
+<base href="<%=basePath%>">
 <html>
 <head>
     <title>Title</title>
@@ -16,100 +23,65 @@
     <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
 </head>
 <body>
+<%
+    //获取书籍信息
+    Book book = (Book) request.getAttribute("info");
+    //获取书籍介绍信息
+    List<String> book_introduction = (List<String>) request.getAttribute("introduction");
+    Iterator<String> iterator = null;
+    if (book_introduction != null) {
+        iterator = book_introduction.iterator();
+    }
+    //获取书目录
+    List<String> directory = (List<String>) request.getAttribute("directory");
+    Iterator<String> iterator_directory = null;
+    if (directory != null) {
+        iterator_directory = directory.iterator();
+    }
+%>
 <%--头部信息--%>
-<div class="bg-light">
-    <div class="container">
-        <div class="row">
-            <div class="col-2">
-                <nav class="navbar navbar-expand-sm">
-                    <a class="navbar-brand" href="#">豆瓣读书</a>
-                </nav>
-            </div>
-            <div class="col-6">
-                <form>
-                    <input type="text" class="form-control form-control-overrite" id="usr">
-                    <button type="submit" class="btn btn-primary search-button">搜索</button>
-                </form>
-            </div>
-            <div class="col-4">
-                <ul class="nav text-dark justify-content-end nav-overrite">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">登录</a>
-                    </li>
-                    <li class="head-line">
-                        <span class="nav-line">|</span>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">免费注册</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="bg-light" style="border-top: 1px solid #E9E9E2;">
-    <div class="container" >
-        <ul class="nav">
-            <li class="nav-item">
-                <a class="nav-link" href="#">购书单</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">电子图书</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">豆瓣书店</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">2017年度榜单</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">2017读书报告</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">购物车</a>
-            </li>
-        </ul>
-    </div>
-</div>
+<jsp:include page="assets/html/head.html"></jsp:include>
 
 <div class="container">
-    <h2 class="book-name">此刻不要回头</h2>
+    <h2 class="book-name"><%=book.getBook_name()%></h2>
     <div class="row book-information">
         <div class="col-2">
             <img src="assets/img/2.jpg" alt="图书" class="img-fluid">
         </div>
         <div class="col-7">
-            <p>作者: <a href="#" class="author">[英]达芙妮·杜穆里埃</a></p>
-            <p>出版社: <span>江苏凤凰文艺出版社</span></p>
-            <p>原作名: <span>Don’t Look Now and Other Stories</span></p>
-            <p>  译者: <a href="#">余大卫</a></p>
-            <p>出版年: <span>2018-6-2</span></p>
-            <p>  页数: <span>666</span></p>
-            <p>  装帧: <span>平装</span></p>
-            <p>  丛书: <span>达芙妮·杜穆里埃作品</span></p>
-            <p>  ISBN: <span>9787559417862</span></p>
+            <p>作者: <a href="#" class="author"><%=book.getAuthor()%></a></p>
+            <% if (book.getPubliseer() != "" ) {%>
+                <p>出版社: <span><%=book.getPubliseer()%></span></p>
+            <%}%>
+            <% if (book.getTranslators() != "" ) {%>
+                <p>译者: <a href="#"><%=book.getTranslators()%></a></p>
+            <%}%>
+            <% if (book.getPutlish_time() != "" ) {%>
+                <p>出版年: <span><%=book.getPutlish_time()%></span></p>
+            <%}%>
+            <% if (book.getPage_amount() != "" ) {%>
+                <p>页数: <span><%=book.getPage_amount()%></span></p>
+            <%}%>
+            <% if (book.getBinding() != "" ) {%>
+                <p>装帧: <span><%=book.getBinding()%></span></p>
+            <%}%>
+            <% if (book.getISBN() != "" ) {%>
+                <p>ISBN: <span><%=book.getISBN()%></span></p>
+            <%}%>
         </div>
         <div class="col-3"></div>
     </div>
     <div class="row">
-        <div class="col-12">
-            <p class="introduction">内容简介  · · · · · · </p>
-        </div>
-        <div class="col-12 introduction-container">
-            <p>◆20世纪殿堂级文学大师的悬疑经典！</p>
-            <p>◆荣获爱伦·坡奖和美国国家图书奖的文坛巨匠</p>
-            <p>◆英国大师级作家、英国皇家文学会会员！</p>
-            <p>◆经典名著《蝴蝶梦》《浮生梦》作者</p>
-            <p>◆达芙妮·杜穆里埃首部短篇悬疑小说集</p>
-            <p>◆听我的，不要回头！不要回头！</p>
-            <p>********************************</p>
-            <p>“此刻不要回头。”</p>
-            <p>威尼斯的一家餐厅内，约翰警告妻子劳拉。</p>
-            <p>但随着劳拉的那次回头，一切随之改变。后来——</p>
-            <p>劳拉结识了一对自称能看见亡魂的双胞胎姐妹，丈夫约翰却认为这对双胞胎姐妹不怀好意。</p>
-            <p>约翰在小巷里发现了一个拼命逃跑的红色小女孩身影，妻子劳拉却什么也没瞧见。</p>
-            <p>与此同时，威尼斯逐渐被死亡的阴影笼罩，所有人都在讨论一起连环杀人案件。警方从中看不出任何动机，凶手迟迟没有归案，而约翰和劳拉对此还一无所知......</p>
-        </div>
+        <% if (book_introduction != null) {%>
+            <div class="col-12">
+                <p class="introduction">内容简介  · · · · · · </p>
+            </div>
+            <div class="col-12 introduction-container">
+                <% while (iterator.hasNext()) {%>
+                    <p><%=iterator.next()%></p>
+                <%}%>
+            </div>
+        <%}%>
         <div class="col-12">
             <p class="introduction">作者简介  · · · · · · </p>
         </div>
@@ -121,17 +93,27 @@
             <p>《此刻不要回头》是达芙妮·杜穆里埃为数不多的短篇佳作集，由五个短篇故事组成，在满足大众阅读需求的同时也具有很高的文学性。根据第一个短篇《此刻不要回头》改编而来的电影，自上映之后斩获诸多重磅电影大奖。</p>
 
         </div>
+        <% if (directory != null) {%>
         <div class="col-12">
             <p class="introduction">目录  · · · · · · </p>
         </div>
         <div class="col-12 introduction-container">
-            <p>此刻不要回头 / 001</p>
-            <p>不要在午夜以后 / 061</p>
-            <p>边界内外 / 113</p>
-            <p>十字架之路 / 192</p>
-            <p>突破 / 271</p>
-
+            <% while (iterator_directory.hasNext()) {%>
+                <p><%=iterator_directory.next()%></p>
+            <%}%>
         </div>
+        <%}%>
+        <%--<div class="col-12">--%>
+            <%--<p class="introduction">目录  · · · · · · </p>--%>
+        <%--</div>--%>
+        <%--<div class="col-12 introduction-container">--%>
+            <%--<p>此刻不要回头 / 001</p>--%>
+            <%--<p>不要在午夜以后 / 061</p>--%>
+            <%--<p>边界内外 / 113</p>--%>
+            <%--<p>十字架之路 / 192</p>--%>
+            <%--<p>突破 / 271</p>--%>
+
+        <%--</div>--%>
     </div>
     <div class="row">
         <div class="col-12">
