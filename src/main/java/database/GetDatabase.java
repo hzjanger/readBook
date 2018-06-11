@@ -19,9 +19,9 @@ public class GetDatabase extends Thread{
     public static void main(String[] args) {
         String url = "https://book.douban.com/";
         GetDatabase getDatabase = new GetDatabase();
-//        getDatabase.getData("https://book.douban.com/subject/30180673/");
-        getDatabase.getUrl(url);
-        getDatabase.start();
+        getDatabase.getData("https://book.douban.com/subject/30206904/?icn=index-editionrecommend");
+//        getDatabase.getUrl(url);
+//        getDatabase.start();
     }
 
     @Override
@@ -55,13 +55,15 @@ public class GetDatabase extends Thread{
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        //得到页面class名为cover下的所有a标签
         Elements ElementLink = document.getElementsByClass("cover").select("a");
         for (Element element : ElementLink) {
+            //得到a标签的超链接
             String getUrl = element.attr("href");
             if (getUrl.indexOf("=pc_web") > -1) {
                 continue;
             }
+            //将链接放到List数组里面，然后再一个一个的爬取超链接里面的内容
             list.add(getUrl);
         }
         return list;
@@ -85,6 +87,9 @@ public class GetDatabase extends Thread{
         book.setBook_name(titleElement.attr("title"));
         System.out.println("书名: "+book.getBook_name());
 
+        String img = document.getElementsByClass("subject clearfix").select("img").attr("src");
+        book.setBook_img(img);
+        System.out.println("img : " + img);
         String binding = document.select("strong[class=ll rating_num]").text();
         book.setReview_grade(binding);
         System.out.println("星级: "+binding);
@@ -99,6 +104,7 @@ public class GetDatabase extends Thread{
             book.setAuthor(book_author);
         }
 
+        //爬虫爬取书籍信息，主要是通过字符窜过分割，得到所需要的信息，其他的信息基本上也是采用这种方法
         if (information.indexOf("出版社:") > -1) {
             book.setPubliseer(info.text().split("出版社:")[1].split(" ")[1]);
             System.out.println("出版社: "+book.getPubliseer());
@@ -174,6 +180,7 @@ public class GetDatabase extends Thread{
         }
         System.out.println("bookInstroduction: " +book.getContent_Introduction());
 
+
         String regex = "/(\\d+)/";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(url);
@@ -206,7 +213,7 @@ public class GetDatabase extends Thread{
 //            System.out.println("book.getDirectory() = " + book.getDirectory());
         }
         book.setIs_popular("0");
-        book.setBook_img("");
+
         return book;
 //        System.out.println(info.text());
 

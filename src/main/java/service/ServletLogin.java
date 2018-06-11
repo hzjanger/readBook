@@ -21,21 +21,24 @@ public class ServletLogin extends HttpServlet {
 
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String username = request.getParameter("username");
-        String pass = request.getParameter("password");
-//        System.out.println(username);
-//        System.out.println(pass);
+        System.out.println("ServlecLogin : haha");
+        response.setContentType("text/html;charset=UTF-8");
+        String username = new String(request.getParameter("username").getBytes("iso-8859-1"), "utf-8");
+        String pass= new String(request.getParameter("password"));
         Connection connection = new ConnectionMysql().getConnection();
         String sql = "select * from user where user_name=? and user_pass=?";
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         boolean flag = false;
+        String user_name = null;
         try {
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, pass);
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
+                user_name = resultSet.getString(2);
+                System.out.println("Login user_name  = " + user_name);
                 flag = true;
             }
         } catch (SQLException e) {
@@ -50,9 +53,10 @@ public class ServletLogin extends HttpServlet {
             }
             RequestDispatcher requestDispatcher = null;
             if (flag) {
-                request.setAttribute("usename", "1");
-                requestDispatcher = request.getRequestDispatcher("/index.jsp");
+//                request.setAttribute("user", user_name);
+                request.getSession().setAttribute("user",user_name);
 
+                requestDispatcher = request.getRequestDispatcher("/index.jsp");
             } else {
                 requestDispatcher = request.getRequestDispatcher("/login.jsp");
             }

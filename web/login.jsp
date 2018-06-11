@@ -15,7 +15,6 @@
     <script src="assets/js/jquery-3.3.1.js"></script>
     <script src="assets/bootstrap-4.0.0-dist/js/bootstrap.js"></script>
     <script src="assets/js/login/login.js"></script>
-
 </head>
 <body>
 <div class="container-fluid" style="padding-bottom: 23px;">

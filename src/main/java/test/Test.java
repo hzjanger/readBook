@@ -1,31 +1,35 @@
 package test;
 
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import config.mysql.ConnectionMysql;
+import database.GetDatabase;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-public class Test {
-    public static void main(String[] args){
-        String driver = "com.mysql.jdbc.Driver";
-        String url = "jdbc:mysql://127.0.0.1:3306/BookRead";
-        String user = "root";
-        String password = "123456";
-        Connection conn = null;
-        try {
-            Class.forName(driver);
-            conn = DriverManager.getConnection(url, user, password);
-        } catch(ClassNotFoundException e) {
-            System.out.println("Sorry,can`t find the Driver!");
-            e.printStackTrace();
-        } catch(Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+import entity.Book;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+import java.sql.*;
+
+public class Test extends Thread{
+
+    @Override
+    public void run() {
+        for (int i = 0; i < 10; i++) {
+            System.out.println("run  i = " + i);
+        }
+    }
+
+    public static void main(String[] args) {
+        new Test().start();
+        for (int i = 0; i < 10; i++) {
+            System.out.println("main  j = " + i);
         }
     }
 }

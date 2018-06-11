@@ -1,4 +1,5 @@
 function check(form) {
+    ttt = form.username.value;
     var flag = true;
     if (form.username.value == '') {
         $('.check-username').removeClass('display').html('用户名不能为空');
@@ -8,7 +9,8 @@ function check(form) {
         $('.check-password').removeClass('display').html('密码不能为空');
         flag = false;
     }
-    return flag;
+    show();
+    return false;
 
 }
 
@@ -20,4 +22,8 @@ $(document).ready(function(){
         $('.check-password').addClass('display');
     })
 });
+
+function show(){
+    console.log(ttt);
+}
 

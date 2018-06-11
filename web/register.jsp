@@ -1,4 +1,4 @@
-<%@ page import="user.User" %><%--
+<%@ page import="user.Register" %><%--
   Created by IntelliJ IDEA.
   User: hzj
   Date: 18-6-3
@@ -17,7 +17,7 @@
 </head>
 <body>
 <%
-    User user = new User();
+    Register user = new Register();
 %>
 <div class="container-fluid" style="padding-bottom: 23px;">
     <div class="row">

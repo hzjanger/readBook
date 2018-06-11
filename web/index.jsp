@@ -1,4 +1,11 @@
-<%--
+<%@ page import="entity.Book" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Iterator" %>
+<%@ page import="test.Test" %>
+<%@ page import="layout.ShowIndex" %>
+<%@ page import="layout.PopularBook" %>
+<%@ page import="database.GetDatabase" %><%--
   Created by IntelliJ IDEA.
   User: hzj
   Date: 18-6-1
@@ -11,9 +18,10 @@
     String path = request.getContextPath();
     String basePath = request.getScheme()+ "://" +request.getServerName()+ ":"+request.getServerPort()+path+ "/" ;
 %>
-<base href="<%=basePath%>">
+
 <html>
 <head>
+    <base href="<%=basePath%>">
     <title>Title</title>
     <link rel="stylesheet" href="assets/bootstrap-4.0.0-dist/css/bootstrap.css">
     <link rel="stylesheet" href="assets/css/index/index.css">
@@ -22,117 +30,70 @@
     <script src="assets/js/jquery-3.3.1.js"></script>
     <script src="assets/bootstrap-4.0.0-dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/bootstrap-4.0.0-dist/js/bootstrap.min.js"></script>
+    <script src="assets/js/index/index.js"></script>
 </head>
 <body>
-<%--<%--%>
-    <%--String useNaame = (String) request.getAttribute("usename");--%>
-<%--//    System.out.println();--%>
-<%--%>--%>
-<%--<%=useNaame%>--%>
-<jsp:include page="head.jsp"></jsp:include>
 
+<%
+
+    ShowIndex showIndex = new ShowIndex();
+    PopularBook popularBook = new PopularBook();
+//    调用showIndex的一个方法
+    showIndex.getBook("root");
+    popularBook.getPopularBook();
+    //获取从数据库中的返回的数据
+    Iterator<Book> iterator = showIndex.getList().iterator();
+    Iterator<Book> iterator_popular_book = popularBook.getList().iterator();
+//    while (iterator_popular_book.hasNext()) {
+//        System.out.println(iterator_popular_book.next().getBook_name());
+//    }
+%>
+<jsp:include page="head.jsp" flush="true"></jsp:include>
 <div class="bg-white">
     <div class="container">
         <div class="row">
             <div class="col-8">
-                <%--新书快递--%>
+                <%--新书速递--%>
                 <h2 class="head">
                     <span class="new-book">新书速递</span>
                 </h2>
                 <div class="row">
+                    <%
+                        //通过迭代在页面上渲染书籍的信息
+                        while (iterator.hasNext()) {
+                            Book recommend_book = iterator.next();
+                    %>
                     <div class="col-3">
                         <div class="card card-overrite">
-                            <img src="assets/img/2.jpg" class="img-fluid">
+                            <a href="/subject/<%=recommend_book.getISBN()%>">
+                                <img src="<%=recommend_book.getBook_img()%>" referrerpolicy="never" class="img-fluid">
+                            </a>
                             <div class="row" style="margin-top: 1rem;">
                                 <div class="col-12">
-                                    <a href="#">此刻不要回头</a>
+                                    <a href="/subject/<%=recommend_book.getISBN()%>"><%=recommend_book.getBook_name()%></a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-3">
-                        <div class="card card-overrite">
-                            <img src="assets/img/2.jpg" class="img-fluid">
-                            <div class="row" style="margin-top: 1rem;">
-                                <div class="col-12">
-                                    <a href="#">此刻不要回头</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="card card-overrite">
-                            <img src="assets/img/2.jpg" class="img-fluid">
-                            <div class="row" style="margin-top: 1rem;">
-                                <div class="col-12">
-                                    <a href="#">此刻不要回头</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="card card-overrite">
-                            <img src="assets/img/2.jpg" class="img-fluid">
-                            <div class="row" style="margin-top: 1rem;">
-                                <div class="col-12">
-                                    <a href="#">此刻不要回头</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="card card-overrite">
-                            <img src="assets/img/2.jpg" class="img-fluid">
-                            <div class="row" style="margin-top: 1rem;">
-                                <div class="col-12">
-                                    <a href="#">此刻不要回头</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="card card-overrite">
-                            <img src="assets/img/2.jpg" class="img-fluid">
-                            <div class="row" style="margin-top: 1rem;">
-                                <div class="col-12">
-                                    <a href="#">此刻不要回头</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="card card-overrite">
-                            <img src="assets/img/2.jpg" class="img-fluid">
-                            <div class="row" style="margin-top: 1rem;">
-                                <div class="col-12">
-                                    <a href="#">此刻不要回头</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="card card-overrite">
-                            <img src="assets/img/2.jpg" class="img-fluid">
-                            <div class="row" style="margin-top: 1rem;">
-                                <div class="col-12">
-                                    <a href="#">此刻不要回头</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <%}%>
                 </div>
                 <%--最受关注图书榜    --%>
                 <h2 class="head">
                     <span class="new-book">最受关注图书榜</span>
                 </h2>
                 <div class="row">
+                    <%while (iterator_popular_book.hasNext()) {
+                        Book popular_book = iterator_popular_book.next();
+                    %>
                     <div class="col-6">
                         <div class="row">
                             <div class="col-5">
-                                <img src="assets/img/2.jpg" class="img-fluid">
+                                <a href="/subject/<%=popular_book.getISBN()%>">
+                                    <img src="<%=popular_book.getBook_img()%>" class="img-fluid" referrerpolicy="never">
+                                </a>
                             </div>
-                            <div col-7>
-                                <p><a href="#">此刻不要回头</a></p>
+                            <div class="col-7">
+                                <p><a href="/subject/<%=popular_book.getISBN()%>"><%=popular_book.getBook_name()%></a></p>
                                 <p>
                                     <i class="fa fa-star" aria-hidden="true"></i>
                                     <i class="fa fa-star" aria-hidden="true"></i>
@@ -141,7 +102,7 @@
                                     <i class="fa fa-star-half-o" aria-hidden="true"></i>
                                     8.9
                                 </p>
-                                <p>作者: [英] 毛姆 </p>
+                                <p><%=popular_book.getAuthor()%></p>
                                 <p>毛姆 / 短篇小说 </p>
                             </div>
                         </div>
@@ -151,81 +112,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-6">
-                        <div class="row">
-                            <div class="col-5">
-                                <img src="assets/img/2.jpg" class="img-fluid">
-                            </div>
-                            <div col-7>
-                                <p><a href="#">此刻不要回头</a></p>
-                                <p>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                                    8.9
-                                </p>
-                                <p>作者: [英] 毛姆 </p>
-                                <p>毛姆 / 短篇小说 </p>
-                            </div>
-                        </div>
-                        <div class="row" style="margin-top: .7rem;">
-                            <div class="col-12" style="padding-right: 1rem;">
-                                <p class="reviews">喜欢与短篇小说中的毛姆叔叔做朋友，走进书页中，听他诉说一个个离奇浪漫的事件，然后无拘无束得开怀大笑。 (二呆评论) </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="row">
-                            <div class="col-5">
-                                <img src="assets/img/2.jpg" class="img-fluid">
-                            </div>
-                            <div col-7>
-                                <p><a href="#">此刻不要回头</a></p>
-                                <p>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                                    8.9
-                                </p>
-                                <p>作者: [英] 毛姆 </p>
-                                <p>毛姆 / 短篇小说 </p>
-                            </div>
-                        </div>
-                        <div class="row" style="margin-top: .7rem;">
-                            <div class="col-12" style="padding-right: 1rem;">
-                                <p class="reviews">喜欢与短篇小说中的毛姆叔叔做朋友，走进书页中，听他诉说一个个离奇浪漫的事件，然后无拘无束得开怀大笑。 (二呆评论) </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="row">
-                            <div class="col-5">
-                                <img src="assets/img/2.jpg" class="img-fluid">
-                            </div>
-                            <div col-7>
-                                <p><a href="#">此刻不要回头</a></p>
-                                <p>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                                    8.9
-                                </p>
-                                <p>作者: [英] 毛姆 </p>
-                                <p>毛姆 / 短篇小说 </p>
-                            </div>
-                        </div>
-                        <div class="row" style="margin-top: .7rem;">
-                            <div class="col-12" style="padding-right: 1rem;">
-                                <p class="reviews">喜欢与短篇小说中的毛姆叔叔做朋友，走进书页中，听他诉说一个个离奇浪漫的事件，然后无拘无束得开怀大笑。 (二呆评论) </p>
-                            </div>
-                        </div>
-                    </div>
+                    <%}%>
                 </div>
                 <%--最受欢迎的书评   --%>
                 <h2 class="head">
@@ -277,7 +164,7 @@
                         </div>
                         <div class="row" style="margin-bottom: 1rem;border-bottom: 1px solid #EAEAEA;">
                             <div class="col-2">
-                                <img src="assets/img/2.jpg" class="img-fluid">
+                                <img    src="assets/img/2.jpg" class="img-fluid">
                             </div>
                             <div class="col-10 assess">
                                 <p><a href="#" class="book-name">此刻不要回头</a></p>

@@ -1,0 +1,67 @@
+.navbar-admin {
+    margin-left: -2rem;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.5rem;
+    width: 100%;
+    padding: .8rem 3rem .8rem 3rem;
+    background: #F44336;
+    cursor: pointer;
+}
+
+.nav-link-login {
+    padding: 1rem 3rem 0 0;
+}
+
+.left-menu .nav-item{
+    padding: .5rem 0 .5rem 2rem;
+}
+
+.left-menu li.active {
+    background: #233342;
+}
+
+.left-menu li.active .nav-link {
+    color: #fff;
+}
+
+.left-menu .nav-link:hover {
+    color: #f7f7f7;
+}
+
+.book-info-form div.row{
+    margin-bottom: .5rem;
+}
+.form-control-book-information {
+    display: inline-block;
+    width: 70%;
+}
+
+.book-info {
+    display: inline-block;
+    width: 15%;
+}
+
+.btn-block-submit {
+    display: block;
+    width: 32%;
+    margin: 0 auto;
+}
+
+.input-none {
+    display: none;
+}
+
+.form-control-overrite {
+    display: inline-block;
+    width: 90%;
+    margin: .5rem .2rem;
+}
+
+.none {
+    display: none;
+}
+
+.show {
+    display: block;
+}

@@ -24,21 +24,22 @@
 </head>
 <body>
 <%
-    System.out.println("search.jsp页面");
     List<Book> list = (List<Book>) request.getAttribute("search");
+    int amount = (int) request.getAttribute("amount");
     Iterator iterator = list.iterator();
     Book book = new Book();
-    while (iterator.hasNext()) {
-        book = (Book) iterator.next();
-    }
 %>
-<jsp:include page="assets/html/head.html"></jsp:include>
+
+<jsp:include page="head.jsp"></jsp:include>
 <div class="container">
-    <h2 class="search-value">搜索 java</h2>
-    <h5 class="search-amount">为您找到300本书籍</h5>
+    <h2 class="search-value">搜索 <%=request.getAttribute("search_value")%></h2>
+    <h5 class="search-amount">为您找到<%=amount%>本书籍</h5>
+    <% while (iterator.hasNext()) {
+        book = (Book) iterator.next();
+    %>
     <div class="row book-list">
         <div class="col-1">
-            <img class="img-fluid" src="assets/img/2.jpg">
+            <img class="img-fluid" src="<%=book.getBook_img()%>" referrerpolicy ="never">
         </div>
         <div class="col-11">
             <p><a href="/subject/<%=book.getISBN()%>"><%=book.getBook_name()%></a></p>
@@ -49,27 +50,28 @@
                 <i class="fa fa-star" aria-hidden="true"></i>
                 <i class="fa fa-star-half-o" aria-hidden="true"></i>
                 <%=book.getReview_grade()%>
-                <%--<span class="reviews">(3019人评价)</span>--%>
             </p>
             <p class="author">
                 <%=book.getAuthor()%>
                 <% if (book.getTranslators() != null) {%>
-                    / <%=book.getTranslators()%>
+                / <%=book.getTranslators()%>
                 <%}%>
                 <% if (book.getPubliseer() != null) {%>
-                    / <%=book.getPubliseer()%>
+                / <%=book.getPubliseer()%>
                 <%}%>
                 <% if (book.getPutlish_time() != null) {%>
-                    / <%=book.getPutlish_time()%>/
+                / <%=book.getPutlish_time()%>/
                 <%}%>
                 <% if (book.getPrice() != null) {%>
-                    <%=book.getPrice()%>
+                <%=book.getPrice()%>
                 <%}%>
             </p>
 
 
         </div>
     </div>
+    <%}%>
+
     <div class="row" style="margin-top: 1rem;margin-bottom: 0rem;">
         <ul class="pagination">
             <li class="page-item"><a class="page-link">上一页</a></li>

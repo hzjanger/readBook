@@ -27,6 +27,8 @@ public class ServletSubject extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("ServletSubject");
+
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         String uri = request.getRequestURI();
@@ -53,14 +55,17 @@ public class ServletSubject extends HttpServlet {
                 book = iterator.next();
             }
             request.setAttribute("info", book);
+//            获取搜索到的书籍信息
             List<String> book_introduction = book.getList(book.getContent_Introduction());
+//            通拖request.serAttribute方法提交的服务器
             request.setAttribute("introduction", book_introduction);
             List<String> directory = book.getList(book.getDirectory());
             request.setAttribute("directory", directory);
-
-//            this.getServletConfig().getServletContext().getRequestDispatcher("/book-information.jsp").forward(request, response);
+//            页面跳转
             RequestDispatcher dispatcher = request.getRequestDispatcher("/book-information.jsp");
             dispatcher.forward(request, response);
+            //            this.getServletConfig().getServletContext().getRequestDispatcher("/book-information.jsp").forward(request, response);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

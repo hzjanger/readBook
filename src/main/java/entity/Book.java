@@ -18,10 +18,11 @@ public class Book {
     private String binding; //书的装帧类型
     private String review_grade;    //书的评价等级
     private String page_amount;    //书的页数
+    private int type;   //书类型
 
     public Book(){}
 
-    public Book(String ISBN, String putlish_time, String author, String publiseer, String translators, String book_name, String directory, String is_popular, String content_Introduction, String book_img, String price, String binding, String review_grade, String page_amount) {
+    public Book(String ISBN, String putlish_time, String author, String publiseer, String translators, String book_name, String directory, String is_popular, String content_Introduction, String book_img, String price, String binding, String review_grade, String page_amount, int type) {
         this.ISBN = ISBN;
         this.putlish_time = putlish_time;
         this.author = author;
@@ -148,6 +149,14 @@ public class Book {
 
     public void setPage_amount(String page_amount) {
         this.page_amount = page_amount;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 
     @Override

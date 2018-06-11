@@ -12,8 +12,8 @@
 </head>
 <body>
 <%
-    String useName = (String) request.getAttribute("usename");
-    application.setAttribute("user", useName);
+    String useName = String.valueOf(request.getSession().getAttribute("user"));
+//    System.out.println(useName);
 %>
 <div class="bg-light">
     <div class="container">
@@ -29,7 +29,7 @@
                     <button type="submit" class="btn btn-primary search-button">搜索</button>
                 </form>
             </div>
-            <% if (useName == null) {%>
+            <% if (useName.equals("null")) {%>
                 <div class="col-4">
                     <ul class="nav text-dark justify-content-end nav-overrite">
                         <li class="nav-item">
@@ -47,34 +47,19 @@
                 <div class="col-4">
                     <ul class="nav text-dark justify-content-end nav-overrite">
                         <li class="nav-item dropdown show">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Dropdown link
+                            <a class="nav-link dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer;">
+                                <%=useName%>
                             </a>
 
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">个人中心</a>
+                                <a class="dropdown-item" href="#">我的书评</a>
+                                <a class="dropdown-item" href="/quit">退出登录</a>
                                 <a class="dropdown-item" href="#">Something else here</a>
                             </div>
                         </li>
-                        <%--<li class="head-line">--%>
-                            <%--<span class="nav-line">|</span>--%>
-                        <%--</li>--%>
-                        <%--<li class="nav-item">--%>
-                            <%--<a class="nav-link" href="register.jsp">免费注册</a>--%>
-                        <%--</li>--%>
                     </ul>
-                    <%--<div class="dropdown show">--%>
-                        <%--<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--%>
-                            <%--Dropdown link--%>
-                        <%--</a>--%>
 
-                        <%--<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">--%>
-                            <%--<a class="dropdown-item" href="#">Action</a>--%>
-                            <%--<a class="dropdown-item" href="#">Another action</a>--%>
-                            <%--<a class="dropdown-item" href="#">Something else here</a>--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
                 </div>
             <%}%>
 

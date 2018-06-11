@@ -37,8 +37,9 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>ServletTest</servlet-name>
-        <url-pattern>/test/*</url-pattern>
+        <url-pattern>/test</url-pattern>
     </servlet-mapping>
+
     <servlet>
         <servlet-name>ServletSubject</servlet-name>
         <servlet-class>service.ServletSubject</servlet-class>
@@ -46,5 +47,41 @@
     <servlet-mapping>
         <servlet-name>ServletSubject</servlet-name>
         <url-pattern>/subject/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletQuit</servlet-name>
+        <servlet-class>service.ServletQuit</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletQuit</servlet-name>
+        <url-pattern>/quit</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletShowIndex</servlet-name>
+        <servlet-class>service.ServletShowIndex</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletShowIndex</servlet-name>
+        <url-pattern>/showIndex</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletChoiceFile</servlet-name>
+        <servlet-class>service.ServletChoiceFile</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletChoiceFile</servlet-name>
+        <url-pattern>/choiceFile</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletInsetBook</servlet-name>
+        <servlet-class>service.ServletInsetBook</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletInsetBook</servlet-name>
+        <url-pattern>/insetBook</url-pattern>
     </servlet-mapping>
 </web-app>

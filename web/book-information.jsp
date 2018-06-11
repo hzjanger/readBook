@@ -40,13 +40,13 @@
     }
 %>
 <%--头部信息--%>
-<jsp:include page="assets/html/head.html"></jsp:include>
+<jsp:include page="head.jsp"></jsp:include>
 
 <div class="container">
     <h2 class="book-name"><%=book.getBook_name()%></h2>
     <div class="row book-information">
         <div class="col-2">
-            <img src="assets/img/2.jpg" alt="图书" class="img-fluid">
+            <img src="<%=book.getBook_img()%>" referrerpolicy ="never" alt="图书" class="img-fluid">
         </div>
         <div class="col-7">
             <p>作者: <a href="#" class="author"><%=book.getAuthor()%></a></p>
@@ -77,6 +77,7 @@
                 <p class="introduction">内容简介  · · · · · · </p>
             </div>
             <div class="col-12 introduction-container">
+                <%--动态的渲染书籍的内容简介--%>
                 <% while (iterator.hasNext()) {%>
                     <p><%=iterator.next()%></p>
                 <%}%>
@@ -91,7 +92,6 @@
             <p>达芙妮·杜穆里埃，英国当代极具影响力的殿堂级女作家，英国皇家文学会会员，曾获爱伦·坡大师奖、美国国家图书奖和安东尼世纪图书奖。</p>
             <p>杜穆里埃一生共创作17部长篇以及几十种其他体裁的文学作品，被誉为“打破通俗小说与纯文学界限”的大师级作家，1938年出版的成名作《蝴蝶梦》基至影响了一个时代情感小说的走向。</p>
             <p>《此刻不要回头》是达芙妮·杜穆里埃为数不多的短篇佳作集，由五个短篇故事组成，在满足大众阅读需求的同时也具有很高的文学性。根据第一个短篇《此刻不要回头》改编而来的电影，自上映之后斩获诸多重磅电影大奖。</p>
-
         </div>
         <% if (directory != null) {%>
         <div class="col-12">

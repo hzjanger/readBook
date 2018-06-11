@@ -82,9 +82,5 @@ public class Test3 {
 
 
 
-    //String url = "https://book.douban.com/subject/30180673/?icn=index-editionrecommend";
-//    Document doc = Jsoup.connect(url)
-//            .header("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)").cookies(cookies)
-//            .timeout(3000).get();
 
 }

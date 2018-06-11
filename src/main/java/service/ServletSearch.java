@@ -27,8 +27,10 @@ public class ServletSearch extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("ServletSearch");
         response.setContentType("text/html;charset=UTF-8");
         String value = request.getParameter("key");
+        System.out.println("search value = " + value);
         ConnectionMysql connectionMysql = new ConnectionMysql();
         Connection connection = connectionMysql.getConnection();
         String sql = "select * from book_information where book_name=?";
@@ -38,10 +40,9 @@ public class ServletSearch extends HttpServlet {
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, value);
             list = new SelectData().exact(preparedStatement);
-
+            request.setAttribute("search_value", value);
             request.setAttribute("search", list);
-            System.out.println("servietSearch服务");
-
+            request.setAttribute("amount", list.size());
             RequestDispatcher dispatcher = request.getRequestDispatcher("/search.jsp");
             dispatcher.forward(request, response);
 //            this.getServletConfig().getServletContext().getRequestDispatcher("/search.jsp").forward(request, response);
