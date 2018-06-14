@@ -25,7 +25,8 @@
             </div>
             <div class="col-6">
                 <form action="/search" method="get">
-                    <input type="text" class="form-control form-control-overrite" id="usr" name="key">
+                    <input type="text" class="form-control form-control-overrite" id="usr" name="key" placeholder="书籍名、作者名">
+                    <input type="text" name="type" style="display: none;" value="search">
                     <button type="submit" class="btn btn-primary search-button">搜索</button>
                 </form>
             </div>
@@ -52,7 +53,7 @@
                             </a>
 
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="#">个人中心</a>
+                                <a class="dropdown-item" href="person.jsp">个人中心</a>
                                 <a class="dropdown-item" href="#">我的书评</a>
                                 <a class="dropdown-item" href="/quit">退出登录</a>
                                 <a class="dropdown-item" href="#">Something else here</a>

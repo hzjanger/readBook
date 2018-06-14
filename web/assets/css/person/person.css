@@ -1,0 +1,43 @@
+.person-img {
+    /*padding: 1rem 1rem 1rem 3rem;*/
+}
+
+.person-img img {
+    display: block;
+    margin: 0 auto;
+    cursor: pointer;
+    max-width: 100px;
+}
+
+.input-none {
+    display: none;
+}
+
+.nav li.active {
+    background: #ff0000;
+}
+.nav li.active a{
+    color: #ffffff;
+}
+
+.nav li.active a:hover{
+    color: #ffffff;
+}
+
+div.person-nav {
+    padding: 0;
+}
+
+div.information {
+    padding: 1rem;
+    border-bottom: 1px #d0d6d9 solid;
+}
+
+.information-box {
+    padding: 2rem 1rem 1rem 1rem;
+}
+
+button.save-information {
+    display: block;
+    margin: 0 auto;
+}

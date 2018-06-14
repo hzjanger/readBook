@@ -1,9 +1,9 @@
 package service;
 
+import com.google.gson.Gson;
 import config.mysql.ConnectionMysql;
-import database.SelectData;
+import dao.SelectData;
 import entity.Book;
-import layout.ShowSearch;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,9 +15,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "ServletSearch")
@@ -27,10 +25,11 @@ public class ServletSearch extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("ServletSearch");
         response.setContentType("text/html;charset=UTF-8");
+        //得到搜索的内容
         String value = request.getParameter("key");
-        System.out.println("search value = " + value);
+        //判断从那个页面发出的请求
+        String page = request.getParameter("type");
         ConnectionMysql connectionMysql = new ConnectionMysql();
         Connection connection = connectionMysql.getConnection();
         String sql = "select * from book_information where book_name=?";
@@ -43,17 +42,22 @@ public class ServletSearch extends HttpServlet {
             request.setAttribute("search_value", value);
             request.setAttribute("search", list);
             request.setAttribute("amount", list.size());
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/search.jsp");
-            dispatcher.forward(request, response);
-//            this.getServletConfig().getServletContext().getRequestDispatcher("/search.jsp").forward(request, response);
-//            ShowSearch showSearch = new ShowSearch();
-//            showSearch.setList(list);
-//            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/search.jsp");
-//            requestDispatcher.forward(request, response);
+            RequestDispatcher dispatcher = null;
+            if ("search".equals(page)) {
+                dispatcher = request.getRequestDispatcher("/search.jsp");
+                dispatcher.forward(request, response);
+            } else if ("delete".equals(page)) {
+                PrintWriter out = response.getWriter();
+                Gson gson = new Gson();
+                String json = gson.toJson(list);
+                out.print(json);
+                out.flush();
+                out.close();
+            }
+
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 }

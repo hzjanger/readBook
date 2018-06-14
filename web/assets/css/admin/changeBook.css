@@ -1,0 +1,7 @@
+.table-change-book span {
+    cursor: pointer;
+}
+
+.table-change-book span:hover {
+    color: #0069d9;
+}

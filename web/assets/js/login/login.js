@@ -9,8 +9,7 @@ function check(form) {
         $('.check-password').removeClass('display').html('密码不能为空');
         flag = false;
     }
-    show();
-    return false;
+    return flag;
 
 }
 
@@ -23,7 +22,4 @@ $(document).ready(function(){
     })
 });
 
-function show(){
-    console.log(ttt);
-}
 

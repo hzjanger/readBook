@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="assets/css/base/myself.css">
     <script src="assets/js/jquery-3.3.1.js"></script>
     <script src="assets/bootstrap-4.0.0-dist/js/bootstrap.js"></script>
-    <script src="assets/js/login/login.js"></script>
+    <script src="assets/js/admin/login.js"></script>
 </head>
 <body>
 <div class="container-fluid" style="padding-bottom: 23px;">
@@ -28,7 +28,7 @@
             <div>
                 <p class="text-center">登录</p>
             </div>
-            <form name="login_form" action="/login" method="post" onsubmit="return check(login_form)">
+            <form>
                 <div class="form-group">
                     <label for="username">用户名:</label>
                     <input type="text" class="form-control" id="username" name="username" placeholder="用户名">
@@ -45,8 +45,7 @@
                     </label>
                 </div>
                 <div style="margin-top: 1rem;">
-                    <%--<button type="submit" class="btn btn-primary btn-block">登录</button>--%>
-                    <a href="adminIndex.jsp" class="btn btn-primary btn-block">登录</a>
+                    <button type="button" class="btn btn-primary btn-block login">登录</button>
                 </div>
                 <div class="form-check" style="margin-top: 1rem">
                     <label class="form-check-label">

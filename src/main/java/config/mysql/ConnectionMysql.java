@@ -7,7 +7,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionMysql {
-    public Connection getConnection() {
+
+    public static Connection getConnection() {
         Connection connection = null;
         MysqlInfor mysqlInfor = new MysqlInfor();
         try {

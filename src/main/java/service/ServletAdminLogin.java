@@ -1,5 +1,6 @@
 package service;
 
+import config.mysql.CloseMysql;
 import config.mysql.ConnectionMysql;
 
 import javax.servlet.RequestDispatcher;
@@ -9,59 +10,50 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@WebServlet(name = "ServletLogin")
-public class ServletLogin extends HttpServlet {
-
-    public void init() {
-
-    }
+@WebServlet(name = "ServletAdminLogin")
+public class ServletAdminLogin extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        String username = new String(request.getParameter("username").getBytes("iso-8859-1"), "utf-8");
-        String pass= new String(request.getParameter("password"));
-        Connection connection = new ConnectionMysql().getConnection();
-        String sql = "select * from user where user_name=? and user_pass=?";
+        request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
+        String user = request.getParameter("user");
+        String pass = request.getParameter("pass");
+        Connection connection = ConnectionMysql.getConnection();
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
+        String sql = "select * from admin where admin_user=? and admin_pass=?";
         boolean flag = false;
-        String user_name = null;
         try {
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, username);
+            preparedStatement.setString(1, user);
             preparedStatement.setString(2, pass);
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                user_name = resultSet.getString(2);
-                System.out.println("Login user_name  = " + user_name);
                 flag = true;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             try {
-                resultSet.close();
-                preparedStatement.close();
-                connection.close();
+                CloseMysql.close(connection, preparedStatement, resultSet);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-            RequestDispatcher requestDispatcher = null;
-            if (flag) {
-//                request.setAttribute("user", user_name);
-                request.getSession().setAttribute("user",user_name);
-                requestDispatcher = request.getRequestDispatcher("/index.jsp");
-            } else {
-                requestDispatcher = request.getRequestDispatcher("/login.jsp");
-            }
-            requestDispatcher.forward(request, response);
         }
-
-
+        PrintWriter out = response.getWriter();
+        if(flag) {
+            request.getSession().setAttribute("adminUser",user);
+            out.print("success");
+        } else {
+            out.print("fail");
+        }
+        out.flush();
+        out.close();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

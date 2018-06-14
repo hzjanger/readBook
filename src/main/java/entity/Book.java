@@ -18,11 +18,11 @@ public class Book {
     private String binding; //书的装帧类型
     private String review_grade;    //书的评价等级
     private String page_amount;    //书的页数
-    private int type;   //书类型
+    private String type;   //书类型
 
     public Book(){}
 
-    public Book(String ISBN, String putlish_time, String author, String publiseer, String translators, String book_name, String directory, String is_popular, String content_Introduction, String book_img, String price, String binding, String review_grade, String page_amount, int type) {
+    public Book(String ISBN, String putlish_time, String author, String publiseer, String translators, String book_name, String directory, String is_popular, String content_Introduction, String book_img, String price, String binding, String review_grade, String page_amount, String type) {
         this.ISBN = ISBN;
         this.putlish_time = putlish_time;
         this.author = author;
@@ -37,6 +37,7 @@ public class Book {
         this.binding = binding;
         this.review_grade = review_grade;
         this.page_amount = page_amount;
+        this.type = type;
     }
 
     public String getISBN() {
@@ -151,11 +152,12 @@ public class Book {
         this.page_amount = page_amount;
     }
 
-    public int getType() {
+
+    public String getType() {
         return type;
     }
 
-    public void setType(int type) {
+    public void setType(String type) {
         this.type = type;
     }
 
@@ -176,9 +178,9 @@ public class Book {
                 ", binding='" + binding + '\'' +
                 ", review_grade='" + review_grade + '\'' +
                 ", page_amount='" + page_amount + '\'' +
+                ", type='" + type + '\'' +
                 '}';
     }
-
 
     public List<String> getList(String value) {
         List<String> list = new ArrayList<String>();

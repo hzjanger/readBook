@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import dao.AddBook;
+import dao.BookDao;
 import entity.Book;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -19,20 +21,20 @@ public class GetDatabase extends Thread{
     public static void main(String[] args) {
         String url = "https://book.douban.com/";
         GetDatabase getDatabase = new GetDatabase();
-        getDatabase.getData("https://book.douban.com/subject/30206904/?icn=index-editionrecommend");
-//        getDatabase.getUrl(url);
-//        getDatabase.start();
+//        getDatabase.getData("https://book.douban.com/subject/30206904/?icn=index-editionrecommend");
+        getDatabase.getUrl(url);
+        getDatabase.start();
     }
 
     @Override
     public void run() {
-        InsertData insertData = new InsertData();
+        BookDao bookDao = new BookDao();
 
         Iterator<String> iterator = this.list.iterator();
         while (iterator.hasNext()) {
             Book book = new Book();
             book = this.getData(iterator.next());
-            insertData.insert(book);
+            bookDao.addBook(book);
             System.out.println(book);
             try {
                 Thread.sleep(5000);
@@ -69,7 +71,7 @@ public class GetDatabase extends Thread{
         return list;
     }
 
-    public Book getData(String url) {
+    public static Book getData(String url) {
         Document document = null;
         Book book = new Book();
         try {
@@ -203,19 +205,12 @@ public class GetDatabase extends Thread{
                     continue;
                 }
                 book_direcotry += di;
-
             }
             book.setDirectory(book_direcotry);
             System.out.println("book_direcotry: " + book_direcotry);
-//            System.out.println(value);
-
-//            book.setDirectory(directories.text().split("\\(")[0]);
-//            System.out.println("book.getDirectory() = " + book.getDirectory());
         }
         book.setIs_popular("0");
 
         return book;
-//        System.out.println(info.text());
-
     }
 }

@@ -13,65 +13,70 @@
 <body>
 <div class="row">
     <div class="col-12">
-        <form action="/insetBook" method="post">
+        <form class="auto-form" style="margin-bottom: 0;">
             <input type="text" class="form-control form-control-overrite" id="usr" name="url" placeholder="输入豆瓣读书上的网址">
-            <button type="submit" class="btn btn-primary search-button">自动填充</button>
+            <button type="button" class="btn btn-primary search-button auto-write">自动填充</button>
         </form>
     </div>
 </div>
 
-<form class="book-info-form">
+<form class="book-info-form" style="margin-top: 1rem;">
     <div class="row">
         <div class="col-3">
             <img src="https://img3.doubanio.com/view/subject/l/public/s29767862.jpg" referrerpolicy ="never" alt="图书" class="img-fluid">
-            <input class="input-none" id="img_input" type="file" accept="image/*"/>
+            <input class="input-none" id="img_input" type="file"/>
             <label for="img_input" id="choice-img" class="btn btn-primary btn-block" style="margin-top: 1rem;">更换图片</label>
         </div>
         <div class="col-9">
             <div class="row">
                 <div class="col-12">
-                    <span class="book-info">书号: </span><input type="text" class="form-control form-control-book-information" placeholder="书号">
+                    <span class="book-info">书号: </span><input type="text" class="form-control form-control-book-information" name="ISBN" placeholder="书号">
                 </div>
             </div>
             <div class="row">
                 <div class="col-12">
-                    <span class="book-info">书名: </span><input type="text" class="form-control form-control-book-information" placeholder="书名">
+                    <span class="book-info">书名: </span><input type="text" class="form-control form-control-book-information" name="book_name" placeholder="书名">
                 </div>
             </div>
             <div class="row">
                 <div class="col-12">
-                    <span class="book-info">出版年: </span><input type="text" class="form-control form-control-book-information" placeholder="出版年">
+                    <span class="book-info">出版年: </span><input type="text" class="form-control form-control-book-information" name="publish_time" placeholder="出版年">
                 </div>
             </div>
             <div class="row">
                 <div class="col-12">
-                    <span class="book-info">出版社: </span><input type="text" class="form-control form-control-book-information" placeholder="出版社">
+                    <span class="book-info">出版社: </span><input type="text" class="form-control form-control-book-information" name="publiseer" placeholder="出版社">
                 </div>
             </div>
             <div class="row">
                 <div class="col-12">
-                    <span class="book-info">作者: </span><input type="text" class="form-control form-control-book-information" placeholder="作者">
+                    <span class="book-info">作者: </span><input type="text" class="form-control form-control-book-information" name="author" placeholder="作者">
                 </div>
             </div>
             <div class="row">
                 <div class="col-12">
-                    <span class="book-info">译者: </span><input type="text" class="form-control form-control-book-information" placeholder="译者">
+                    <span class="book-info">译者: </span><input type="text" class="form-control form-control-book-information" name="tranaslators" placeholder="译者">
                 </div>
             </div>
             <div class="row">
                 <div class="col-12">
-                    <span class="book-info">价格: </span><input type="text" class="form-control form-control-book-information" placeholder="价格">
+                    <span class="book-info">价格: </span><input type="text" class="form-control form-control-book-information" name="price" placeholder="价格">
                 </div>
             </div>
             <div class="row">
                 <div class="col-12">
-                    <span class="book-info">装帧类型: </span><input type="text" class="form-control form-control-book-information" placeholder="装帧类型">
+                    <span class="book-info">装帧类型: </span><input type="text" class="form-control form-control-book-information" name="binding" placeholder="装帧类型">
 
                 </div>
             </div>
             <div class="row">
                 <div class="col-12">
-                    <span class="book-info">页数: </span><input type="text" class="form-control form-control-book-information" placeholder="页数">
+                    <span class="book-info">页数: </span><input type="text" class="form-control form-control-book-information" name="page_amount" placeholder="页数">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <span class="book-info">书类型: </span><input type="text" class="form-control form-control-book-information" name="type" placeholder="书所属类型">
                 </div>
             </div>
         </div>
@@ -102,7 +107,8 @@
         </div>
     </div>
     <div class="row">
-        <button type="submit" class="btn btn-primary" style="margin: auto;">保存书籍</button>
+        <button type="button" class="btn btn-primary onSubmit" style="margin: auto;">保存书籍</button>
+        <button type="button" class="btn btn-primary updata-submit none" style="margin:0 auto;">保存更改</button>
     </div>
 </form>
 </body>

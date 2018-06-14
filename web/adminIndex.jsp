@@ -15,14 +15,23 @@
     <script src="assets/bootstrap-4.0.0-dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/bootstrap-4.0.0-dist/js/bootstrap.min.js"></script>
     <script src="assets/js/admin/index.js"></script>
+    <script src="assets/js/admin/insertBook.js"></script>
+    <script src="assets/js/admin/deleteBook.js"></script>
+    <script src="assets/js/admin/updataBook.js"></script>
+    <script src="assets/js/admin/updatePass.js"></script>
 </head>
 <body>
 <%
-    Book book = (Book) request.getAttribute("insertBook");
-    if (book != null) {
-        System.out.println(book);
+    String adminUser = String.valueOf(request.getSession().getAttribute("adminUser"));
+    System.out.println("adminUser = " + adminUser);
+    if ("null".equals(adminUser)) {
+        System.out.println("页数");
     }
 %>
+
+<% if ("null".equals(adminUser)) {%>
+    <jsp:forward page="adminLogin.jsp"></jsp:forward>
+<%}%>
 <div class="bg-white" style="border-bottom: 1px solid #9FA5AE;">
     <div class="container-fluid">
         <div class="row">
@@ -32,11 +41,19 @@
                 </div>
             </div>
             <div class="col-10">
-                <ul class="nav justify-content-end">
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-login" href="#">登录</a>
+                <ul class="nav text-dark justify-content-end nav-overrite">
+                    <li class="nav-item dropdown show">
+                        <a class="nav-link dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer;"><%=adminUser%></a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="/adminQuit">退出登录</a>
+                        </div>
                     </li>
                 </ul>
+                <%--<ul class="nav justify-content-end">--%>
+                    <%--<li class="nav-item">--%>
+                        <%--<a class="nav-link nav-link-login" href="#"><%=adminUser%></a>--%>
+                    <%--</li>--%>
+                <%--</ul>--%>
             </div>
         </div>
     </div>
@@ -53,13 +70,13 @@
             <jsp:include page="deleteBook.jsp" flush="true"></jsp:include>
         </div>
         <div class="col-10 bg-light none">
-            <jsp:include page="checkBook.jsp" flush="true"></jsp:include>
+            <jsp:include page="updataBook.jsp" flush="true"></jsp:include>
         </div>
         <div class="col-10 bg-light none">
             查找书籍
         </div>
         <div class="col-10 bg-light none">
-            修改密码
+            <jsp:include page="adminUpdataPass.jsp" flush="true"></jsp:include>
         </div>
     </div>
 </div>

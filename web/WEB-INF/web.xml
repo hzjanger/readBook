@@ -59,29 +59,56 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>ServletShowIndex</servlet-name>
-        <servlet-class>service.ServletShowIndex</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ServletShowIndex</servlet-name>
-        <url-pattern>/showIndex</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>ServletChoiceFile</servlet-name>
-        <servlet-class>service.ServletChoiceFile</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ServletChoiceFile</servlet-name>
-        <url-pattern>/choiceFile</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
         <servlet-name>ServletInsetBook</servlet-name>
         <servlet-class>service.ServletInsetBook</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ServletInsetBook</servlet-name>
         <url-pattern>/insetBook</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletDeleteBook</servlet-name>
+        <servlet-class>service.ServletDeleteBook</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletDeleteBook</servlet-name>
+        <url-pattern>/deleteBook</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletUpdataBook</servlet-name>
+        <servlet-class>service.ServletUpdataBook</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletUpdataBook</servlet-name>
+        <url-pattern>/updataBook</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletAdminLogin</servlet-name>
+        <servlet-class>service.ServletAdminLogin</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletAdminLogin</servlet-name>
+        <url-pattern>/adminLogin</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletAdminUpdataPass</servlet-name>
+        <servlet-class>service.ServletAdminUpdataPass</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletAdminUpdataPass</servlet-name>
+        <url-pattern>/adminUpdataPass</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletAdminQuit</servlet-name>
+        <servlet-class>service.ServletAdminQuit</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletAdminQuit</servlet-name>
+        <url-pattern>/adminQuit</url-pattern>
     </servlet-mapping>
 </web-app>

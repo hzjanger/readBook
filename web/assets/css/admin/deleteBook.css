@@ -1,0 +1,7 @@
+.table-delete-book span {
+    cursor: pointer;
+}
+
+.table-delete-book span:hover {
+    color: #0069d9;
+}

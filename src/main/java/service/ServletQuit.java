@@ -20,6 +20,8 @@ public class ServletQuit extends HttpServlet {
 //        PrintWriter out = response.getWriter();
 //        response.setContentType("text/html; charser=UTF-8");
         response.setContentType("text/html;charset=UTF-8");
+        String url = request.getRequestURI();
+        System.out.println(url);
         request.getSession().removeAttribute("user");
         RequestDispatcher requestDispatcher = null;
         requestDispatcher = request.getRequestDispatcher("/index.jsp");

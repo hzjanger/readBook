@@ -9,21 +9,17 @@
 <html>
 <head>
     <title>Title</title>
+    <link rel="stylesheet" href="assets/css/admin/changeBook.css">
 </head>
 <body>
 <div class="row">
     <div class="col-12">
         <form>
-            <input type="text" class="form-control form-control-overrite" placeholder="书籍名称">
-            <button type="submit" class="btn btn-primary search-button">搜索</button>
+            <input type="text" class="form-control form-control-overrite" name="change" placeholder="书籍名称">
+            <button type="button" class="btn btn-primary search-button search-change">搜索</button>
         </form>
     </div>
 </div>
-<%--<div class="row">--%>
-<%--<div class="col-12">--%>
-<%--<button class="btn btn-primary">批量删除</button>--%>
-<%--</div>--%>
-<%--</div>--%>
 <div class="row">
     <div class="col-12">
         <table class="table table-striped">
@@ -36,35 +32,7 @@
                 <th scope="col">操作</th>
             </tr>
             </thead>
-            <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>9787020131624</td>
-                <td>最后一公里的哲学：电商物流全链条运营管理</td>
-                <td>暂无</td>
-                <td><a href="#">修改</a></td>
-            </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td>9787020131624</td>
-                <td>最后一公里的哲学：电商物流全链条运营管理</td>
-                <td>暂无</td>
-                <td><a href="#">修改</a></td>
-            </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td>9787020131624</td>
-                <td>最后一公里的哲学：电商物流全链条运营管理</td>
-                <td>暂无</td>
-                <td><a href="#">修改</a></td>
-            </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td>9787020131624</td>
-                <td>最后一公里的哲学：电商物流全链条运营管理</td>
-                <td>暂无</td>
-                <td><a href="#">修改</a></td>
-            </tr>
+            <tbody class="table-change-book">
             </tbody>
         </table>
     </div>
@@ -83,7 +51,6 @@
             <li class="page-item"><a class="page-link">下一页</a></li>
         </ul>
     </div>
-
 </div>
 </body>
 </html>
