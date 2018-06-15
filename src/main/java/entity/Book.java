@@ -19,26 +19,9 @@ public class Book {
     private String review_grade;    //书的评价等级
     private String page_amount;    //书的页数
     private String type;   //书类型
+    private String author_introduction; //作者简介
 
     public Book(){}
-
-    public Book(String ISBN, String putlish_time, String author, String publiseer, String translators, String book_name, String directory, String is_popular, String content_Introduction, String book_img, String price, String binding, String review_grade, String page_amount, String type) {
-        this.ISBN = ISBN;
-        this.putlish_time = putlish_time;
-        this.author = author;
-        this.publiseer = publiseer;
-        this.translators = translators;
-        this.book_name = book_name;
-        this.directory = directory;
-        this.is_popular = is_popular;
-        this.content_Introduction = content_Introduction;
-        this.book_img = book_img;
-        this.price = price;
-        this.binding = binding;
-        this.review_grade = review_grade;
-        this.page_amount = page_amount;
-        this.type = type;
-    }
 
     public String getISBN() {
         return ISBN;
@@ -161,6 +144,14 @@ public class Book {
         this.type = type;
     }
 
+    public String getAuthor_introduction() {
+        return author_introduction;
+    }
+
+    public void setAuthor_introduction(String author_introduction) {
+        this.author_introduction = author_introduction;
+    }
+
     @Override
     public String toString() {
         return "Book{" +
@@ -179,6 +170,7 @@ public class Book {
                 ", review_grade='" + review_grade + '\'' +
                 ", page_amount='" + page_amount + '\'' +
                 ", type='" + type + '\'' +
+                ", author_introduction='" + author_introduction + '\'' +
                 '}';
     }
 

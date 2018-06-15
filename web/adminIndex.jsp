@@ -49,11 +49,6 @@
                         </div>
                     </li>
                 </ul>
-                <%--<ul class="nav justify-content-end">--%>
-                    <%--<li class="nav-item">--%>
-                        <%--<a class="nav-link nav-link-login" href="#"><%=adminUser%></a>--%>
-                    <%--</li>--%>
-                <%--</ul>--%>
             </div>
         </div>
     </div>
@@ -73,7 +68,7 @@
             <jsp:include page="updataBook.jsp" flush="true"></jsp:include>
         </div>
         <div class="col-10 bg-light none">
-            查找书籍
+
         </div>
         <div class="col-10 bg-light none">
             <jsp:include page="adminUpdataPass.jsp" flush="true"></jsp:include>

@@ -1,14 +1,16 @@
 package database;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import dao.AddBook;
+import dao.AuthorDao;
 import dao.BookDao;
+import entity.Author;
 import entity.Book;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -16,37 +18,71 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 public class GetDatabase extends Thread{
+    private Lock lock=new ReentrantLock();
+    Queue<String> queue;
+
     private List<String> list;
+    private int amount = 0;
+
+    public GetDatabase() {
+        queue = new LinkedList<String>();
+        list = new ArrayList<String>();
+    }
 
     public static void main(String[] args) {
-        String url = "https://book.douban.com/";
+        String url = "https://book.douban.com/tag/%E7%BC%96%E7%A8%8B";
         GetDatabase getDatabase = new GetDatabase();
+//        getDatabase.getAuthorInfo("https://book.douban.com/subject/30212126/?icn=index-editionrecommend");
 //        getDatabase.getData("https://book.douban.com/subject/30206904/?icn=index-editionrecommend");
-        getDatabase.getUrl(url);
         getDatabase.start();
+        getDatabase.getUrl(url, "https://book.douban.com");
     }
 
     @Override
     public void run() {
-        BookDao bookDao = new BookDao();
-
-        Iterator<String> iterator = this.list.iterator();
-        while (iterator.hasNext()) {
-            Book book = new Book();
-            book = this.getData(iterator.next());
-            bookDao.addBook(book);
-            System.out.println(book);
+        while (true) {
             try {
-                Thread.sleep(5000);
+                Thread.sleep(2);
             } catch (InterruptedException e) {
                 e.printStackTrace();
+            }
+            BookDao bookDao = new BookDao();
+
+            Iterator<String> iterator = this.list.iterator();
+            lock.lock();
+            try {
+                for (String q: queue) {
+
+                    Author author = new Author();
+                    author = this.getAuthorInfo(q);
+                    AuthorDao authorDao = new AuthorDao();
+                    authorDao.addAuthor(author);
+                    System.out.println(author);
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    Book book = new Book();
+                    book = this.getData(q);
+                    bookDao.addBook(book);
+                    System.out.println(book);
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            } catch (Exception e){
+
+            } finally {
+                lock.unlock();
             }
         }
     }
 
-    public List<String> getUrl(String url) {
+    public void getUrl(String url, String old_url) {
         Document document = null;
-        this.list = new ArrayList<String>();
         try {
             document = Jsoup.connect(url)
                     .data("query", "java")
@@ -58,17 +94,45 @@ public class GetDatabase extends Thread{
             e.printStackTrace();
         }
         //得到页面class名为cover下的所有a标签
-        Elements ElementLink = document.getElementsByClass("cover").select("a");
-        for (Element element : ElementLink) {
-            //得到a标签的超链接
-            String getUrl = element.attr("href");
-            if (getUrl.indexOf("=pc_web") > -1) {
-                continue;
+        Elements ElementLink = document.select("div[class=pic]").select("a");
+//        Elements ElementLink = document.getElementsByClass("cover").select("a");
+        lock.lock();
+        try {
+            for (Element element : ElementLink) {
+                //得到a标签的超链接
+                String getUrl = element.attr("href");
+                System.out.println(getUrl);
+//            if (getUrl.indexOf("=pc_web") > -1) {
+//                continue;
+//            }
+                //将链接放到List数组里面，然后再一个一个的爬取超链接里面的内容
+//            list.add(getUrl);
+                queue.offer(getUrl);
             }
-            //将链接放到List数组里面，然后再一个一个的爬取超链接里面的内容
-            list.add(getUrl);
+        } catch (Exception e) {
+
+        } finally {
+            lock.unlock();
         }
-        return list;
+
+        String link_next = document.select("span[class=next]").select("a").attr("href");
+        url = old_url +   link_next;
+        this.amount++;
+        System.out.println("url = " + url);
+        try {
+            Thread.sleep(4000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        if (url.equals("https://book.douban.com")) {
+            return;
+        } else {
+            this.getUrl(url, old_url);
+        }
+
+
+
+
     }
 
     public static Book getData(String url) {
@@ -210,7 +274,46 @@ public class GetDatabase extends Thread{
             System.out.println("book_direcotry: " + book_direcotry);
         }
         book.setIs_popular("0");
+        book.setType("3");
 
         return book;
+    }
+
+    public static Author getAuthorInfo(String url) {
+        Author author = new Author();
+        Document document = null;
+        try {
+            document = Jsoup.connect(url)
+                    .data("query", "java")
+                    .userAgent("Chrome")
+                    .cookie("auth", "token")
+                    .timeout(3000)
+                    .post();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Element info = document.getElementById("info");
+        String information = info.text();
+        System.out.println("information = "+information);
+
+        if (information.indexOf("作者:") > -1) {
+            String book_author = info.text().split("作者:")[1].split("出版社:")[0];
+            System.out.println("作者: " + book_author);
+            author.setAuthor_name(book_author);
+        }
+        Elements author_introduction = document.select("div[class=intro]");
+        for (Element author_introduction1: author_introduction) {
+            String author_info = "";
+//            System.out.println(author_introduction1);
+            String author_introduction2 = String.valueOf(author_introduction1.select("p"));
+            String[] author_list = author_introduction2.split("<p>");
+            for (String fo: author_list) {
+                author_info = author_info + fo.split("</p>")[0] + '\n';
+            }
+            System.out.println(author_info);
+            author.setAuthor_introduction(author_info);
+            System.out.println("------------------------");
+        }
+        return author;
     }
 }

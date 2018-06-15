@@ -1,4 +1,4 @@
-<%--
+<%@ page import="entity.User" %><%--
   Created by IntelliJ IDEA.
   User: hzj
   Date: 18-6-14
@@ -13,16 +13,26 @@
     <link rel="stylesheet" href="assets/css/base/base.css">
     <link rel="stylesheet" href="assets/css/person/person.css">
     <script src="assets/js/jquery-3.3.1.js"></script>
-    <script src="assets/js/person/person.js"></script>
 </head>
 <body>
+<%
+    User user = (User) request.getSession().getAttribute("user_info");
+    if (user == null) {
+        user.init();
+    }
+    System.out.println(user.getBirth());
+    if ("".equals(user.getBirth())) {
+        user.setBirth("出生日期(格式为： 年-月-日)");
+    }
+    System.out.println("user = "+user);
+%>
 <jsp:include page="head.jsp" flush="true"></jsp:include>
 <div class="container" style="margin-top: 1rem">
     <div class="row">
         <div class="col-2">
             <div class="row bg-light">
                 <div class="col-12 person-img">
-                    <img src="//img.mukewang.com/533e4d5b0001d57502200203-200-200.jpg" class="img-fluid rounded-circle">
+                    <img src="<%=user.getUser_img()%>" class="img-fluid rounded-circle">
                     <input class="input-none" id="img_input" type="file"/>
                     <label for="img_input" id="choice-img" class="btn btn-primary btn-block" style="margin-top: 1rem;">更换头像</label>
                 </div>
@@ -49,8 +59,9 @@
                     <div class="information-box">
                         <form>
                             <div class="form-group">
-                                <label for="user-name">用户名: </label>
-                                <input type="text" class="form-control" id="user-name" aria-describedby="emailHelp" placeholder="用户名">
+                                <label for="user-name">昵称: </label>
+                                <input type="text" class="form-control" id="user-name" aria-describedby="emailHelp" placeholder="<%=user.getUser_name()%>">
+                                <div class="alert alert-danger alert-dismissable fade show display check-user-name"></div>
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">性别: </label>
@@ -62,11 +73,12 @@
                             </div>
                             <div class="form-group">
                                 <label for="birth">出生日期: </label>
-                                <input type="text" class="form-control" id="birth" aria-describedby="emailHelp" placeholder="出生日期(格式为： 年-月-日)">
+                                <input type="text" class="form-control" id="birth" aria-describedby="emailHelp" placeholder="<%=user.getBirth()%>">
                             </div>
                             <div class="form-group">
                                 <label for="user-email">邮箱: </label>
-                                <input type="email" class="form-control" id="user-email" aria-describedby="emailHelp" placeholder="邮箱">
+                                <input type="email" class="form-control" id="user-email" aria-describedby="emailHelp" placeholder="<%=user.getUser_email()%>">
+                                <div class="alert alert-danger alert-dismissable fade show display check-email"></div>
                             </div>
                            <div>
                                <button type="button" class="btn btn-primary save-information">保存信息</button>

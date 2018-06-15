@@ -31,7 +31,8 @@ $(document).ready(function () {
         }
 
         if ($(this).text().indexOf("查找书籍") > -1) {
-            $($('.container-fluid div.bg-light')[3]).addClass('show');
+            return;
+            // $($('.container-fluid div.bg-light')[3]).addClass('show');
         }
 
         if ($(this).text().indexOf("修改密码") > -1) {

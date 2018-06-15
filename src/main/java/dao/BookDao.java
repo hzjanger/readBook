@@ -91,7 +91,7 @@ public class BookDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        sql = "insert into book_information (ISBN, publish_time, author, publiseer, translators, book_name, directory, is_popular, content_Introduction, book_img, price, binding, review_grade, page_amount)" + "value (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        sql = "insert into book_information (ISBN, publish_time, author, publiseer, translators, book_name, directory, is_popular, content_Introduction, book_img, price, binding, review_grade, page_amount, type)" + "value (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try {
             connection.setAutoCommit(false);
             preparedStatement = connection.prepareStatement(sql);
@@ -109,6 +109,7 @@ public class BookDao {
             preparedStatement.setString(12, book.getBinding());
             preparedStatement.setString(13, book.getReview_grade());
             preparedStatement.setString(14, book.getPage_amount());
+            preparedStatement.setString(15, book.getType());
             preparedStatement.addBatch();
             preparedStatement.executeBatch();
             connection.commit();
@@ -131,7 +132,6 @@ public class BookDao {
         String sql = "update book_information set publish_time=?,author=?,publiseer=?,translators=?,book_name=?,directory=?,is_popular=?,content_Introduction=?,book_img=?,price=?,binding=?,review_grade=?,page_amount=?,type=? where ISBN=?";
         try {
             preparedStatement = connection.prepareStatement(sql);
-//            preparedStatement.setString(1, book.getISBN());
             preparedStatement.setString(1, book.getPutlish_time());
             preparedStatement.setString(2, book.getAuthor());
             preparedStatement.setString(3, book.getPubliseer());
@@ -150,6 +150,12 @@ public class BookDao {
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                CloseMysql.close(connection, preparedStatement, null);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -172,7 +178,6 @@ public class BookDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
 

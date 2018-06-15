@@ -23,7 +23,6 @@ public class PopularBook extends ShowBook{
         try {
             preparedStatement = connection.prepareStatement(select_max);
             List<Book> list_book = new Check_Book().getOneBook(preparedStatement);
-
             Iterator<Book> iterator_book = list_book.iterator();
             while (iterator_book.hasNext()) {
                 Book book = iterator_book.next();

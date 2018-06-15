@@ -111,4 +111,22 @@
         <servlet-name>ServletAdminQuit</servlet-name>
         <url-pattern>/adminQuit</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletSaveUserInfro</servlet-name>
+        <servlet-class>service.ServletSaveUserInfro</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletSaveUserInfro</servlet-name>
+        <url-pattern>/saveUserInfro</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletPersonCenter</servlet-name>
+        <servlet-class>service.ServletPersonCenter</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletPersonCenter</servlet-name>
+        <url-pattern>/personCenter</url-pattern>
+    </servlet-mapping>
 </web-app>

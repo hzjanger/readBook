@@ -9,21 +9,29 @@
 <html>
 <head>
     <title>Title</title>
+    <link rel="stylesheet" href="assets/css/index/head.css">
+    <%--<link rel="stylesheet" href="assets/bootstrap-4.0.0-dist/css/bootstrap.css">--%>
+    <%--<link rel="stylesheet" href="assets/css/base/base.css">--%>
+    <script src="assets/js/jquery-3.3.1.js"></script>
+    <%--<script src="assets/bootstrap-4.0.0-dist/js/bootstrap.bundle.min.js"></script>--%>
+    <%--<script src="assets/bootstrap-4.0.0-dist/js/bootstrap.min.js"></script>--%>
+    <script src="assets/js/index/head.js"></script>
+    <script src="assets/js/person/person.js"></script>
 </head>
 <body>
 <%
     String useName = String.valueOf(request.getSession().getAttribute("user"));
 //    System.out.println(useName);
 %>
-<div class="bg-light">
+<div class="bg-light head-box">
     <div class="container">
         <div class="row">
-            <div class="col-2">
+            <div class="col-4 col-sm-7 col-md-2 col-lg-2">
                 <nav class="navbar navbar-expand-sm">
                     <a class="navbar-brand" href="../../index.jsp">豆瓣读书</a>
                 </nav>
             </div>
-            <div class="col-6">
+            <div class="col-md-6 col-lg-6 hidden">
                 <form action="/search" method="get">
                     <input type="text" class="form-control form-control-overrite" id="usr" name="key" placeholder="书籍名、作者名">
                     <input type="text" name="type" style="display: none;" value="search">
@@ -31,7 +39,7 @@
                 </form>
             </div>
             <% if (useName.equals("null")) {%>
-                <div class="col-4">
+                <div class="col-8 col-sm-5 col-md-4 col-lg-4">
                     <ul class="nav text-dark justify-content-end nav-overrite">
                         <li class="nav-item">
                             <a class="nav-link" href="login.jsp">登录</a>
@@ -45,52 +53,52 @@
                     </ul>
                 </div>
             <%} else {%>
-                <div class="col-4">
-                    <ul class="nav text-dark justify-content-end nav-overrite">
-                        <li class="nav-item dropdown show">
-                            <a class="nav-link dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer;">
-                                <%=useName%>
-                            </a>
-
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="person.jsp">个人中心</a>
-                                <a class="dropdown-item" href="#">我的书评</a>
-                                <a class="dropdown-item" href="/quit">退出登录</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </li>
-                    </ul>
-
+                <div class="col-8 col-sm-5 col-md-4 col-lg-4">
+                    <div class="row">
+                        <div class="col-8"></div>
+                        <div class="col-4">
+                            <img src="//img.mukewang.com/533e4d5b0001d57502200203-200-200.jpg" id="head-img" class="img-fluid rounded-circle nav-img"  style="max-width: 50px">
+                            <a class="nav-link dropdown-toggle" role="button" id="dropdownMenuLink" style="display: none;"><%=useName%></a>
+                            <ul class="nav menu-nav none bg-white" style="position: absolute;">
+                                <li class="nav-item">
+                                    <a class="nav-link person-center" href="#">个人中心</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/quit">退出登录</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             <%}%>
 
         </div>
     </div>
 </div>
-<div class="bg-light" style="border-top: 1px solid #E9E9E2;">
-    <div class="container" >
-        <ul class="nav">
-            <li class="nav-item">
-                <a class="nav-link" href="#">购书单</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">电子图书</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">豆瓣书店</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">2017年度榜单</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">2017读书报告</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">购物车</a>
-            </li>
-        </ul>
-    </div>
-</div>
+<%--<div class="bg-light" style="border-top: 1px solid #E9E9E2;">--%>
+    <%--<div class="container" >--%>
+        <%--<ul class="nav">--%>
+            <%--<li class="nav-item">--%>
+                <%--<a class="nav-link" href="#">购书单</a>--%>
+            <%--</li>--%>
+            <%--<li class="nav-item">--%>
+                <%--<a class="nav-link" href="#">电子图书</a>--%>
+            <%--</li>--%>
+            <%--<li class="nav-item">--%>
+                <%--<a class="nav-link" href="#">豆瓣书店</a>--%>
+            <%--</li>--%>
+            <%--<li class="nav-item">--%>
+                <%--<a class="nav-link" href="#">2017年度榜单</a>--%>
+            <%--</li>--%>
+            <%--<li class="nav-item">--%>
+                <%--<a class="nav-link" href="#">2017读书报告</a>--%>
+            <%--</li>--%>
+            <%--<li class="nav-item">--%>
+                <%--<a class="nav-link" href="#">购物车</a>--%>
+            <%--</li>--%>
+        <%--</ul>--%>
+    <%--</div>--%>
+<%--</div>--%>
 
 </div>
 </body>

@@ -1,10 +1,11 @@
 .person-img {
-    /*padding: 1rem 1rem 1rem 3rem;*/
+    /*padding-bottom: 1rem;*/
 }
 
 .person-img img {
     display: block;
     margin: 0 auto;
+    margin-top: 1rem;
     cursor: pointer;
     max-width: 100px;
 }
@@ -40,4 +41,8 @@ div.information {
 button.save-information {
     display: block;
     margin: 0 auto;
+}
+
+.display {
+    display: none;
 }

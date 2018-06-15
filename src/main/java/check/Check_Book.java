@@ -16,7 +16,6 @@ public class Check_Book {
     public List<Book> getOneBook(PreparedStatement preparedStatement) {
         List<Book> list = new ArrayList<Book>();
         list.clear();
-
         ResultSet resultSet = null;
         try {
             resultSet = preparedStatement.executeQuery();

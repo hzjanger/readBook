@@ -59,6 +59,7 @@ $(document).ready(function () {
             dataType: "json",//设置返回数据的格式
             //请求成功后的回调函数 data为json格式
             success: function (data) {
+                console.log(data);
                 $.each(data,function(key,value) {
                     if (key == 'book_img') {
                         $('.book-info-form .img-fluid').attr("src",value);
@@ -95,6 +96,9 @@ $(document).ready(function () {
                     }
                     if (key == 'directory') {
                         $('#directory').val(value);
+                    }
+                    if (key == 'author_introduction') {
+                        $('#author-introduce').val(value)
                     }
                 });
             },

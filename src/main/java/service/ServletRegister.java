@@ -22,11 +22,7 @@ public class ServletRegister extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("ServletRegister :");
-//        response.setContentType("text/html");
-//        PrintWriter out = response.getWriter();
-//        response.setContentType("text/html;charset=UTF-8");
         String user_name = new String(request.getParameter("user").getBytes("iso-8859-1"), "utf-8");
-//        System.out.println("Register user_name = "+user_name);
         String email = request.getParameter("email");
         String pass = request.getParameter("pass");
         Connection  connection = new ConnectionMysql().getConnection();

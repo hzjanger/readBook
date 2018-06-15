@@ -926,11 +926,12 @@
     <table id="234" parent="3" name="book_information"/>
     <table id="235" parent="3" name="publisher"/>
     <table id="236" parent="3" name="recommend"/>
-    <table id="237" parent="3" name="reply"/>
-    <table id="238" parent="3" name="review"/>
-    <table id="239" parent="3" name="type"/>
-    <table id="240" parent="3" name="user"/>
-    <column id="241" parent="232" name="admin_id">
+    <table id="237" parent="3" name="recommend_type"/>
+    <table id="238" parent="3" name="reply"/>
+    <table id="239" parent="3" name="review"/>
+    <table id="240" parent="3" name="type"/>
+    <table id="241" parent="3" name="user"/>
+    <column id="242" parent="232" name="admin_id">
       <Position>1</Position>
       <Comment>管理员id</Comment>
       <DataType>int(20)|0s</DataType>
@@ -938,24 +939,24 @@
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="242" parent="232" name="admin_user">
+    <column id="243" parent="232" name="admin_user">
       <Position>2</Position>
       <Comment>管理员账号</Comment>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="243" parent="232" name="admin_pass">
+    <column id="244" parent="232" name="admin_pass">
       <Position>3</Position>
       <Comment>管理员密码</Comment>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="244" parent="232" name="PRIMARY">
+    <key id="245" parent="232" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>admin_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="245" parent="233" name="author">
+    <column id="246" parent="233" name="author_id">
       <Position>1</Position>
       <Comment>作者id</Comment>
       <DataType>int(11)|0s</DataType>
@@ -963,138 +964,122 @@
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="246" parent="233" name="birthday">
+    <column id="247" parent="233" name="author_name">
       <Position>2</Position>
-      <Comment>作者生日</Comment>
-      <DataType>date|0s</DataType>
+      <Comment>作者姓名</Comment>
+      <DataType>varchar(200)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="247" parent="233" name="authr_name">
+    <column id="248" parent="233" name="author_introduction">
       <Position>3</Position>
-      <DataType>varchar(20)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="248" parent="233" name="nationality">
-      <Position>4</Position>
-      <DataType>varchar(20)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="249" parent="233" name="sex">
-      <Position>5</Position>
-      <Comment>性别</Comment>
-      <DataType>varchar(5)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="250" parent="233" name="author_introduction">
-      <Position>6</Position>
       <Comment>作者简介</Comment>
-      <DataType>text|0s</DataType>
+      <DataType>varchar(5000)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="251" parent="233" name="PRIMARY">
+    <key id="249" parent="233" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>author</ColNames>
+      <ColNames>author_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="252" parent="234" name="ISBN">
+    <column id="250" parent="234" name="ISBN">
       <Position>1</Position>
       <Comment>图书的唯一标识码</Comment>
       <DataType>varchar(13)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="253" parent="234" name="publish_time">
+    <column id="251" parent="234" name="publish_time">
       <Position>2</Position>
       <Comment>出版年</Comment>
       <DataType>varchar(10)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="254" parent="234" name="author">
+    <column id="252" parent="234" name="author">
       <Position>3</Position>
       <Comment>作者</Comment>
       <DataType>varchar(200)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="255" parent="234" name="publiseer">
+    <column id="253" parent="234" name="publiseer">
       <Position>4</Position>
       <Comment>出版社</Comment>
       <DataType>varchar(100)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="256" parent="234" name="translators">
+    <column id="254" parent="234" name="translators">
       <Position>5</Position>
       <Comment>翻译者</Comment>
       <DataType>varchar(50)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="257" parent="234" name="book_name">
+    <column id="255" parent="234" name="book_name">
       <Position>6</Position>
       <Comment>书名</Comment>
       <DataType>varchar(100)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="258" parent="234" name="directory">
+    <column id="256" parent="234" name="directory">
       <Position>7</Position>
       <Comment>目录</Comment>
-      <DataType>varchar(5000)|0s</DataType>
+      <DataType>varchar(6000)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="259" parent="234" name="is_popular">
+    <column id="257" parent="234" name="is_popular">
       <Position>8</Position>
       <Comment>是否热门</Comment>
       <DataType>varchar(2)|0s</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="260" parent="234" name="content_Introduction">
+    <column id="258" parent="234" name="content_Introduction">
       <Position>9</Position>
       <Comment>内容简介</Comment>
       <DataType>varchar(5000)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="261" parent="234" name="book_img">
+    <column id="259" parent="234" name="book_img">
       <Position>10</Position>
       <Comment>书图片路径</Comment>
       <DataType>varchar(100)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="262" parent="234" name="price">
+    <column id="260" parent="234" name="price">
       <Position>11</Position>
       <Comment>书价格</Comment>
       <DataType>varchar(10)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="263" parent="234" name="binding">
+    <column id="261" parent="234" name="binding">
       <Position>12</Position>
       <Comment>装帧类型</Comment>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="264" parent="234" name="review_grade">
+    <column id="262" parent="234" name="review_grade">
       <Position>13</Position>
       <Comment>评价等级</Comment>
       <DataType>varchar(3)|0s</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="265" parent="234" name="page_amount">
+    <column id="263" parent="234" name="page_amount">
       <Position>14</Position>
       <Comment>书的页数</Comment>
       <DataType>varchar(6)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="266" parent="234" name="type">
+    <column id="264" parent="234" name="type">
       <Position>15</Position>
       <Comment>书类型</Comment>
       <DataType>varchar(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="267" parent="234" name="PRIMARY">
+    <key id="265" parent="234" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ISBN</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="268" parent="235" name="id">
+    <column id="266" parent="235" name="id">
       <Position>1</Position>
       <Comment>出版社id</Comment>
       <DataType>varchar(32)|0s</DataType>
@@ -1102,179 +1087,198 @@
       <DefaultExpression>&apos;&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="269" parent="235" name="publish_name">
+    <column id="267" parent="235" name="publish_name">
       <Position>2</Position>
       <Comment>出版社名</Comment>
       <DataType>varchar(30)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="270" parent="235" name="publish_address">
+    <column id="268" parent="235" name="publish_address">
       <Position>3</Position>
       <Comment>出版社地址</Comment>
       <DataType>varchar(30)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="271" parent="235" name="PRIMARY">
+    <key id="269" parent="235" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="272" parent="236" name="ISBN">
+    <column id="270" parent="236" name="ISBN">
       <Position>1</Position>
       <Comment>图书的唯一标识</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="273" parent="236" name="user">
+    <column id="271" parent="236" name="user">
       <Position>2</Position>
       <Comment>用户名</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="274" parent="236" name="PRIMARY">
+    <column id="272" parent="236" name="type">
+      <Position>3</Position>
+      <DataType>varchar(10)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="273" parent="236" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>user
-ISBN</ColNames>
+ISBN
+type</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="275" parent="237" name="reply_id">
+    <column id="274" parent="237" name="recommend_type">
+      <Position>1</Position>
+      <DataType>varchar(10)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="275" parent="237" name="type">
+      <Position>2</Position>
+      <DataType>varchar(10)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="276" parent="237" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>type</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="277" parent="238" name="reply_id">
       <Position>1</Position>
       <Comment>回复id</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="276" parent="237" name="user_id">
+    <column id="278" parent="238" name="user_id">
       <Position>2</Position>
       <Comment>用户id</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="277" parent="237" name="ISBN">
+    <column id="279" parent="238" name="ISBN">
       <Position>3</Position>
       <Comment>图书的唯一标识码</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="278" parent="237" name="reply_time">
+    <column id="280" parent="238" name="reply_time">
       <Position>4</Position>
       <Comment>回复时间</Comment>
       <DataType>date|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="279" parent="237" name="PRIMARY">
+    <key id="281" parent="238" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>reply_id
 user_id
 ISBN</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="280" parent="238" name="ISBN">
+    <column id="282" parent="239" name="ISBN">
       <Position>1</Position>
       <Comment>图书的唯一标识码</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="281" parent="238" name="user_id">
+    <column id="283" parent="239" name="user_id">
       <Position>2</Position>
       <Comment>用户id</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="282" parent="238" name="value">
+    <column id="284" parent="239" name="value">
       <Position>3</Position>
       <Comment>评价内容</Comment>
       <DataType>varchar(1000)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="283" parent="238" name="review_time">
+    <column id="285" parent="239" name="review_time">
       <Position>4</Position>
       <Comment>评价时间</Comment>
       <DataType>date|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="284" parent="238" name="PRIMARY">
+    <key id="286" parent="239" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ISBN
 user_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="285" parent="239" name="type_id">
+    <column id="287" parent="240" name="type_id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="286" parent="239" name="type">
+    <column id="288" parent="240" name="type">
       <Position>2</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="287" parent="239" name="PRIMARY">
+    <key id="289" parent="240" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>type_id
 type</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="288" parent="240" name="user_id">
+    <column id="290" parent="241" name="user_id">
       <Position>1</Position>
       <Comment>用户id</Comment>
       <DataType>int(20)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="289" parent="240" name="user_name">
+    <column id="291" parent="241" name="user_name">
       <Position>2</Position>
       <Comment>用户名</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="290" parent="240" name="user_pass">
+    <column id="292" parent="241" name="user_pass">
       <Position>3</Position>
       <Comment>用户名密码</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="291" parent="240" name="user_img">
+    <column id="293" parent="241" name="user_img">
       <Position>4</Position>
       <Comment>用户头像</Comment>
-      <DataType>varchar(30)|0s</DataType>
+      <DataType>varchar(100)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="292" parent="240" name="sex">
+    <column id="294" parent="241" name="sex">
       <Position>5</Position>
       <Comment>性别</Comment>
-      <DataType>int(11)|0s</DataType>
+      <DataType>varchar(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="293" parent="240" name="birth">
+    <column id="295" parent="241" name="birth">
       <Position>6</Position>
       <Comment>用户名生日</Comment>
       <DataType>varchar(15)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="294" parent="240" name="user_address">
+    <column id="296" parent="241" name="user_email">
       <Position>7</Position>
-      <Comment>地址</Comment>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="295" parent="240" name="user_email">
-      <Position>8</Position>
-      <DataType>varchar(20)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <key id="296" parent="240" name="PRIMARY">
+    <key id="297" parent="241" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>user_name</ColNames>
+      <ColNames>user_id</ColNames>
       <Primary>1</Primary>
     </key>
   </database-model>

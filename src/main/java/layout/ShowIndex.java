@@ -18,21 +18,22 @@ public class ShowIndex extends ShowBook{
     public ShowIndex() {
         super();
     }
-    public void getBook(String value) {
-
+    public void getBook(String value, String type) {
+        this.getList().clear();
         if (value == null || "".equals(value)) {
             value = "root";
         }
 
         ConnectionMysql connectionMysql = new ConnectionMysql();
         Connection connection = connectionMysql.getConnection();
-        String select_user = "select * from recommend where user=?";
+        String select_user = "select * from recommend where user=? and type=?";
         PreparedStatement preparedStatement = null;
         List<String> ISBN = new ArrayList<String>();
         ResultSet resultSet = null;
         try {
             preparedStatement = connection.prepareStatement(select_user);
             preparedStatement.setString(1, value);
+            preparedStatement.setString(2, type);
             //得到一个查找ISBN的结果集
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {

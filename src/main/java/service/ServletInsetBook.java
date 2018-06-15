@@ -2,10 +2,12 @@ package service;
 
 
 import com.google.gson.Gson;
+import dao.AuthorDao;
 import dao.BookDao;
 import dao.RequestValue;
 import database.GetDatabase;
 import dao.AddBook;
+import entity.Author;
 import entity.Book;
 import sun.misc.Request;
 
@@ -26,8 +28,12 @@ public class ServletInsetBook extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
         Book book = new Book();
+        Author author = new Author();
         book = new RequestValue().getBookValue(request);
+        author = new RequestValue().getAuthorValue(request);
         BookDao bookDao = new BookDao();
+        AuthorDao authorDao = new AuthorDao();
+        authorDao.addAuthor(author);
         PrintWriter out = response.getWriter();
         Gson gson = new Gson();
         String json = gson.toJson(book);
@@ -52,6 +58,8 @@ public class ServletInsetBook extends HttpServlet {
         System.out.println("url = "+url);
         Gson gson = new Gson();
         Book book = GetDatabase.getData(url);
+        Author author = GetDatabase.getAuthorInfo(url);
+        book.setAuthor_introduction(author.getAuthor_introduction());
         String json = gson.toJson(book);
         System.out.println(json);
         PrintWriter out = response.getWriter();

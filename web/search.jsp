@@ -86,10 +86,6 @@
         </ul>
     </div>
 </div>
-<div class="bg-light" style="margin-top: 2rem;margin-bottom: 2rem;">
-    <div class="container">
-        页脚
-    </div>
-</div>
+<jsp:include page="footer.jsp" flush="true"></jsp:include>
 </body>
 </html>

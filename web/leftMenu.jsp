@@ -22,7 +22,7 @@
         <a class="nav-link" href="#">修改书籍</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">查找书籍</a>
+        <%--<a class="nav-link" href="#">查找书籍</a>--%>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="#">修改密码</a>

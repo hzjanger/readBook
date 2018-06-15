@@ -1,5 +1,6 @@
 package dao;
 
+import entity.Author;
 import entity.Book;
 
 import javax.servlet.http.HttpServletRequest;
@@ -62,5 +63,14 @@ public class RequestValue {
             e.printStackTrace();
         }
         return value;
+    }
+
+    public Author getAuthorValue(HttpServletRequest request) {
+        Author author = new Author();
+        String author_name = this.getValue(request, "author");
+        author.setAuthor_name(author_name);
+        String author_introduction = this.getValue(request, "author_introduce");
+        author.setAuthor_introduction(author_introduction);
+        return author;
     }
 }
