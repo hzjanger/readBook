@@ -21,7 +21,10 @@
 <body>
 <%
     String useName = String.valueOf(request.getSession().getAttribute("user"));
-//    System.out.println(useName);
+    String user_img = String.valueOf(request.getSession().getAttribute("user_img"));
+    if ("null".equals(user_img)) {
+        user_img = "//img.mukewang.com/533e4d5b0001d57502200203-200-200.jpg";
+    }
 %>
 <div class="bg-light head-box">
     <div class="container">
@@ -57,7 +60,7 @@
                     <div class="row">
                         <div class="col-8"></div>
                         <div class="col-4">
-                            <img src="//img.mukewang.com/533e4d5b0001d57502200203-200-200.jpg" id="head-img" class="img-fluid rounded-circle nav-img"  style="max-width: 50px">
+                            <img src="<%=user_img%>" id="head-img" class="img-fluid rounded-circle nav-img"  style="max-width: 50px">
                             <a class="nav-link dropdown-toggle" role="button" id="dropdownMenuLink" style="display: none;"><%=useName%></a>
                             <ul class="nav menu-nav none bg-white" style="position: absolute;">
                                 <li class="nav-item">
@@ -75,31 +78,6 @@
         </div>
     </div>
 </div>
-<%--<div class="bg-light" style="border-top: 1px solid #E9E9E2;">--%>
-    <%--<div class="container" >--%>
-        <%--<ul class="nav">--%>
-            <%--<li class="nav-item">--%>
-                <%--<a class="nav-link" href="#">购书单</a>--%>
-            <%--</li>--%>
-            <%--<li class="nav-item">--%>
-                <%--<a class="nav-link" href="#">电子图书</a>--%>
-            <%--</li>--%>
-            <%--<li class="nav-item">--%>
-                <%--<a class="nav-link" href="#">豆瓣书店</a>--%>
-            <%--</li>--%>
-            <%--<li class="nav-item">--%>
-                <%--<a class="nav-link" href="#">2017年度榜单</a>--%>
-            <%--</li>--%>
-            <%--<li class="nav-item">--%>
-                <%--<a class="nav-link" href="#">2017读书报告</a>--%>
-            <%--</li>--%>
-            <%--<li class="nav-item">--%>
-                <%--<a class="nav-link" href="#">购物车</a>--%>
-            <%--</li>--%>
-        <%--</ul>--%>
-    <%--</div>--%>
-<%--</div>--%>
-
 </div>
 </body>
 </html>

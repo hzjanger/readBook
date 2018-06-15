@@ -22,6 +22,7 @@
 <html>
 <head>
     <base href="<%=basePath%>">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Title</title>
     <link rel="stylesheet" href="assets/bootstrap-4.0.0-dist/css/bootstrap.css">
     <link rel="stylesheet" href="assets/css/index/index.css">
@@ -35,13 +36,12 @@
 <body>
 
 <%
-
     ShowIndex showIndex = new ShowIndex();
-    //    获取推荐书籍
+    //获取推荐书籍
     showIndex.getBook("root", "3");
-//    System.out.println(showIndex.getList());
+    //System.out.println(showIndex.getList());
     Iterator<Book> iterator = showIndex.getList().iterator();
-//    showIndex.getBook("root", "2");
+    //showIndex.getBook("root", "2");
     ShowIndex showIndexSell = new ShowIndex();
     //获取畅销图书
     showIndexSell.getBook("root", "2");
@@ -60,13 +60,12 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-8">
-                <%--新书速递--%>
+                <%--推荐书籍--%>
                 <h2 class="head">
                     <span class="new-book">推荐书籍</span>
                 </h2>
                 <div class="row">
                     <%
-                        //通过迭代在页面上渲染书籍的信息
                         while (iterator.hasNext()) {
                             Book recommend_book = iterator.next();
                     %>

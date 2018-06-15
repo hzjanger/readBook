@@ -30,6 +30,7 @@ public class ServletLogin extends HttpServlet {
         ResultSet resultSet = null;
         boolean flag = false;
         String user_name = null;
+        String user_img = null;
         try {
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, username);
@@ -37,6 +38,7 @@ public class ServletLogin extends HttpServlet {
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 user_name = resultSet.getString(2);
+                user_img = resultSet.getString(4);
                 System.out.println("Login user_name  = " + user_name);
                 flag = true;
             }
@@ -52,6 +54,8 @@ public class ServletLogin extends HttpServlet {
             }
             RequestDispatcher requestDispatcher = null;
             if (flag) {
+//                System.out.println(user_img);
+                request.getSession().setAttribute("user_img", user_img);
 //                request.setAttribute("user", user_name);
                 request.getSession().setAttribute("user",user_name);
                 requestDispatcher = request.getRequestDispatcher("/index.jsp");
